@@ -58,8 +58,12 @@ export default function BlogFilter({ blogPosts }: BlogFilterProps) {
               className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
             >
               {/* Image */}
-              <div className="h-56 bg-gradient-to-br from-[#c87a5e]/20 to-[#b5525f]/20 flex items-center justify-center">
-                <div className="text-7xl">🌸</div>
+              <div className="h-56 overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
               </div>
 
               {/* Content */}
