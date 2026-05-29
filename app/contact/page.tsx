@@ -50,7 +50,7 @@ export default function Contact() {
                 <Mail className="h-5 w-5 text-[#c87a5e] mt-0.5" />
                 <div>
                   <div className="font-medium text-gray-900">Email</div>
-                  <div className="text-sm text-gray-500">hello@thewholelove.ph</div>
+                  <div className="text-sm text-gray-500">thewholelove.official@gmail.com</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
