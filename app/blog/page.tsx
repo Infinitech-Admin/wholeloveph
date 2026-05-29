@@ -17,7 +17,7 @@ const blogPosts = [
     category: "Health Education",
     date: "May 15, 2024",
     readTime: "5 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://images.unsplash.com/photo-1649298173603-9c95aa950879?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const blogPosts = [
     category: "Product Guide",
     date: "May 10, 2024",
     readTime: "4 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1664375262056-a8503d4d073c?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const blogPosts = [
     category: "Community",
     date: "May 5, 2024",
     readTime: "6 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://images.unsplash.com/photo-1646105372611-0d775e5ccda2?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const blogPosts = [
     category: "Wellness",
     date: "April 28, 2024",
     readTime: "5 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://images.unsplash.com/photo-1547250936-e1426b362327?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const blogPosts = [
     category: "Product Guide",
     date: "April 20, 2024",
     readTime: "4 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1679430887921-31e1047e5b55?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 6,
@@ -67,7 +67,7 @@ const blogPosts = [
     category: "Community",
     date: "April 15, 2024",
     readTime: "6 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://images.unsplash.com/photo-1554902843-260acd0993f8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
