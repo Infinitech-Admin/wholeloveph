@@ -13,7 +13,7 @@ const blogPosts = [
     category: "Health Education",
     date: "May 15, 2024",
     readTime: "5 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://images.unsplash.com/photo-1547250936-e1426b362327?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const blogPosts = [
     category: "Product Guide",
     date: "May 10, 2024",
     readTime: "4 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://plus.unsplash.com/premium_photo-1664375262056-a8503d4d073c?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const blogPosts = [
     category: "Community",
     date: "May 5, 2024",
     readTime: "6 min read",
-    image: "/517690080_17845592784524324_1898221041050082505_n.jpg",
+    image: "https://images.unsplash.com/photo-1646105372611-0d775e5ccda2?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -44,12 +44,12 @@ export default function BlogSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
+          <p className="text-xs font-medium text-[#b5525f] tracking-widest uppercase mb-2">
+            Hot Takes
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-gray-900 mb-4">
             From Our <span className="italic text-[#c87a5e]">Blog</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Tips, guides, and stories about menstrual health, self-care, and empowerment.
-          </p>
         </div>
 
         {/* Blog Cards Grid */}
@@ -61,8 +61,12 @@ export default function BlogSection() {
               className="group bg-[#fff5f5] rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 text-left"
             >
               {/* Image */}
-              <div className="h-48 bg-gradient-to-br from-[#c87a5e]/20 to-[#b5525f]/20 flex items-center justify-center">
-                <div className="text-6xl">🌸</div>
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
 
               {/* Content */}
