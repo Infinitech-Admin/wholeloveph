@@ -8,13 +8,13 @@ export default function ProductCollection() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-12">
         <div>
           <p className="text-xs font-medium text-[#b5525f] tracking-widest uppercase mb-2">
             Top Picks
           </p>
-          <h2 className="font-serif text-2xl text-gray-900">
-            Customer Favorites
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-gray-900 mb-4">
+            Customer <span className="italic text-[#c87a5e]">Favorites</span>
           </h2>
         </div>
       </div>
