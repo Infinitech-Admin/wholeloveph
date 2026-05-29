@@ -2,7 +2,13 @@ import { Metadata } from "next";
 import { Star } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { HeartLargeIcon } from "@/components/icons";
+
+const promises = [
+  { num: "01", t: "Pure cotton cover", d: "Soft against sensitive skin — every single time." },
+  { num: "02", t: "Ultra-absorbent core", d: "Up to 12 hours of dryness you can actually feel." },
+  { num: "03", t: "Hypoallergenic", d: "Free from harsh chemicals, dyes, and irritants." },
+  { num: "04", t: "Eco-conscious", d: "Recyclable packaging — gentle on you, and the planet." },
+];
 
 export const metadata: Metadata = {
   title: "About — The Whole Love",
@@ -29,36 +35,31 @@ export default function About() {
 
       {/* Promise Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          <div className="aspect-square rounded-3xl bg-gradient-to-br from-pink-200 to-pink-300 shadow-lg flex items-center justify-center">
-            <div className="w-48 h-48 bg-white/40 rounded-full flex items-center justify-center">
-              <HeartLargeIcon />
-            </div>
-          </div>
-          <div>
-            <h2 className="font-serif text-3xl md:text-4xl text-gray-900 mb-5">Our Promise</h2>
-            <p className="text-gray-600 mb-8">
-              Every product is FDA-approved and crafted with breathable, skin-friendly materials. Because comfort shouldn&apos;t be a compromise — and confidence shouldn&apos;t be optional.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {[
-                { t: "Pure cotton cover", d: "Soft against sensitive skin" },
-                { t: "Ultra-absorbent core", d: "Up to 12 hours of dryness" },
-                { t: "Hypoallergenic", d: "Free from harsh chemicals" },
-                { t: "Eco-conscious", d: "Recyclable packaging" },
-              ].map((f) => (
-                <div key={f.t} className="p-5 rounded-xl bg-white border border-pink-100">
-                  <div className="font-serif text-lg text-gray-900 mb-1">{f.t}</div>
-                  <div className="text-sm text-gray-500">{f.d}</div>
-                </div>
-              ))}
-            </div>
+        <div>
+          <h2 className="font-serif text-3xl md:text-4xl text-gray-900 mb-5">Warm & empowering</h2>
+          <p className="text-gray-600 mb-8 tracking-wider">  
+            At WholeLove, we believe every woman deserves to feel comfortable in her own body — without compromise. 
+            That's why we craft sanitary napkins and wet wipes that go beyond the basics: breathable materials that move with you, 
+            ultra-gentle formulas that respect sensitive skin, and absorbency you can actually rely on. 
+            Our products are FDA-approved, thoughtfully made, and priced so that quality care is never out of reach. 
+            Because feeling fresh, protected, and confident isn't a luxury — it's something every woman deserves, every single day.
+          </p>
+
+          {/* 4-column card strip */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-pink-100 border border-pink-100 rounded-2xl overflow-hidden">
+            {promises.map((f) => (
+              <div key={f.t} className="p-8 bg-white hover:bg-pink-50 transition-colors">
+                <div className="font-serif text-5xl font-light text-rose-200 mb-5 leading-none">{f.num}</div>
+                <div className="font-serif text-xl text-gray-900 mb-2">{f.t}</div>
+                <div className="text-sm font-light text-gray-400 leading-relaxed">{f.d}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="bg-pink-50 py-20">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-serif text-3xl md:text-4xl text-center text-gray-900 mb-12">Loved by women everywhere</h2>
           <div className="grid md:grid-cols-3 gap-6">
