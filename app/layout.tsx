@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
+import FloatingSocials from "@/components/FloatingSocials"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -107,8 +108,8 @@ export const metadata: Metadata = {
     description:
       "High-quality, affordable sanitary napkins and wet wipes designed for comfort, cleanliness, and confidence.",
     images: ["https://wholelove.ph/og-image.jpg"],
-    creator: "@wholeloveph",
-    site: "@wholeloveph",
+    creator: "@wl.officialph",
+    site: "@wl.officialph",
   },
 
   appleWebApp: {
@@ -266,9 +267,10 @@ export default function RootLayout({
       "addressCountry": "PH"
     },
     "sameAs": [
-      "https://www.facebook.com/wholelove.ph",
-      "https://www.instagram.com/wholelove.ph",
-      "https://www.tiktok.com/@wholelove.ph"
+      "https://www.facebook.com/profile.php?id=61576417655210",
+      "https://www.instagram.com/thewholelove.official",
+      "https://shopee.ph/whole.love.ph",
+      "https://www.tiktok.com/@wl.officialph"
     ],
     "foundingDate": "2024",
     "numberOfEmployees": {
@@ -488,6 +490,7 @@ export default function RootLayout({
 
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
+        <FloatingSocials />
       </body>
     </html>
   )
