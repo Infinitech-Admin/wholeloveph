@@ -20,7 +20,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl grid md:grid-cols-2 max-h-[90vh] flex flex-col md:flex-row">
+      <div className="relative bg-white rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl grid md:grid-cols-2 max-h-[90vh] flex flex-col md:flex-row overflow-y-auto md:overflow-hidden">
 
         {/* ── Left Panel ── */}
         <div className="relative min-h-[40vh] md:min-h-[60vh] flex flex-col justify-between p-6 md:p-8 overflow-hidden flex-shrink-0"
