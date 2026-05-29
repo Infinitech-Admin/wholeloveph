@@ -23,7 +23,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
       <div className="relative bg-white rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl grid md:grid-cols-2 max-h-[90vh] flex flex-col md:flex-row">
 
         {/* ── Left Panel ── */}
-        <div className="relative min-h-[35vh] md:min-h-[60vh] flex flex-col justify-end p-3 md:p-3 overflow-hidden flex-shrink-0"
+        <div className="relative min-h-[40vh] md:min-h-[60vh] flex flex-col justify-between p-6 md:p-8 overflow-hidden flex-shrink-0"
           style={{ background: "#1a0f0f" }}>
 
           {/* diagonal texture */}
@@ -37,38 +37,36 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
           {/* Badge */}
           {product.badge && (
-            <span className="absolute top-3 left-3 md:top-5 md:left-5 px-2 py-1 md:px-3 md:py-1 rounded-full z-10 text-[8px] md:text-[10px] font-medium tracking-widest uppercase text-white"
+            <span className="absolute top-4 left-4 md:top-6 md:left-6 px-3 py-1 rounded-full z-10 text-[10px] md:text-xs font-medium tracking-widest uppercase text-white"
               style={{ background: "rgba(181,82,95,0.85)" }}>
               {product.badge}
             </span>
           )}
 
           {/* Product Image */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 md:w-96 md:h-96 flex items-center justify-center opacity-90">
+          <div className="flex-1 flex items-center justify-center">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-contain"
+              className="max-w-[280px] max-h-[280px] md:max-w-[380px] md:max-h-[380px] w-full h-full object-contain"
             />
           </div>
 
           {/* Name & Price */}
-          <div className="flex flex-col md:flex-row md:items-center md:gap-2">
-            <h2 className="text-base md:text-xl leading-snug text-white mb-1 md:mb-2"
-              style={{ fontFamily: "'DM Serif Display', serif" }}>
-              {product.name}
-            </h2>
-
-            <span className="text-[10px] md:text-md font-medium uppercase"
+          <div className="relative z-10">
+            <span className="text-[10px] md:text-xs font-medium uppercase tracking-widest"
               style={{ color: "#b5525f" }}>
               {product.category}
             </span>
+            <h2 className="text-lg md:text-2xl leading-snug text-white mt-1 mb-2"
+              style={{ fontFamily: "'DM Serif Display', serif" }}>
+              {product.name}
+            </h2>
+            <p className="text-xl md:text-2xl font-light tracking-tight"
+              style={{ color: "#ffaabb" }}>
+              {product.price}
+            </p>
           </div>
-
-          <p className="text-base md:text-xl font-light tracking-tight"
-            style={{ color: "#ffaabb" }}>
-            {product.price}
-          </p>
         </div>
 
         {/* ── Right Panel ── */}
