@@ -71,28 +71,28 @@ export default function HeroSection() {
           </div>
 
           {/* Right Content - Hero Carousel */}
-          <div className="relative w-[80vh] h-[80vh]">
-            <div className="overflow-hidden rounded-2xl">
+          <div className="relative w-full max-w-[280px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[500px] xl:max-w-[580px] aspect-[4/5] mx-auto">
+            <div className="overflow-hidden">
               {posters.map((poster, index) => (
                 <img
                   key={poster}
                   src={poster}
                   alt={`Whole Love poster ${index + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
                     }`}
                 />
               ))}
             </div>
 
             {/* Carousel Dots */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
               {posters.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${index === currentSlide
-                      ? "w-6 bg-white"
-                      : "bg-white/50 hover:bg-white/70"
+                  className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                      ? "w-5 sm:w-6 bg-white"
+                      : "w-2 bg-white/50 hover:bg-white/70"
                     }`}
                 />
               ))}
