@@ -36,8 +36,12 @@ export default function BlogModal({ post, onClose }: BlogModalProps) {
         </button>
 
         {/* Header Image */}
-        <div className="h-64 bg-gradient-to-br from-[#c87a5e]/20 to-[#b5525f]/20 flex items-center justify-center">
-          <div className="text-8xl">🌸</div>
+        <div className="h-64 overflow-hidden">
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Content */}
