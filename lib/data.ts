@@ -149,7 +149,7 @@ export const products: Product[] = [
     description: "Per piece, 240mm regular length with ultra thin design. Standard length for moderate flow. Sold per piece for flexible purchasing. Ultra-thin design with breathable cotton cover. Wings for secure fit and leak protection.",
     price: "₱65",
     badge: null,
-    image: "/ph-11134207-7ra0h-mc66nkxzi3wbd3.jpg",
+    image: "/6127428459236626490.jpg",
     category: "Pads",
   },
   {
