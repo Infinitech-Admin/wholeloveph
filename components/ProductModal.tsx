@@ -1,6 +1,7 @@
 "use client";
 
-import { X, Heart, ShoppingBag, Star } from "lucide-react";
+import { X, ZoomIn } from "lucide-react";
+import { useState, useRef } from "react";
 import type { Product } from "@/lib/data";
 
 interface ProductModalProps {
@@ -9,7 +10,36 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ product, onClose }: ProductModalProps) {
+  const [isZooming, setIsZooming] = useState(false);
+  const [magStyle, setMagStyle] = useState<React.CSSProperties>({});
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  const MAG_SIZE = 220;
+  const ZOOM_FACTOR = 3;
+
   if (!product) return null;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const w = rect.width;
+    const h = rect.height;
+    const half = MAG_SIZE / 2;
+
+    const bgW = w * ZOOM_FACTOR;
+    const bgH = h * ZOOM_FACTOR;
+    const offsetX = x * ZOOM_FACTOR - half;
+    const offsetY = y * ZOOM_FACTOR - half;
+
+    setMagStyle({
+      left: x - half,
+      top: y - half,
+      backgroundImage: `url(${product.image})`,
+      backgroundSize: `${bgW}px ${bgH}px`,
+      backgroundPosition: `-${offsetX}px -${offsetY}px`,
+    });
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -23,12 +53,13 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
       <div className="relative bg-white rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl grid md:grid-cols-2 max-h-[90vh] flex flex-col md:flex-row overflow-y-auto md:overflow-hidden">
 
         {/* ── Left Panel ── */}
-        <div className="relative min-h-[40vh] md:min-h-[60vh] flex flex-col justify-between p-6 md:p-8 overflow-hidden flex-shrink-0"
-          style={{ background: "#1a0f0f" }}>
-
-          {/* diagonal texture */}
+        <div
+          className="relative min-h-[40vh] md:min-h-[60vh] overflow-hidden"
+          style={{ background: "#1a0f0f" }}
+        >
+          {/* Diagonal texture */}
           <div
-            className="absolute inset-0 opacity-10 pointer-events-none"
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
             style={{
               backgroundImage:
                 "repeating-linear-gradient(45deg, #b5525f 0px, #b5525f 1px, transparent 1px, transparent 12px)",
@@ -37,84 +68,139 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
           {/* Badge */}
           {product.badge && (
-            <span className="absolute top-4 left-4 md:top-6 md:left-6 px-3 py-1 rounded-full z-10 text-[10px] md:text-xs font-medium tracking-widest uppercase text-white"
-              style={{ background: "rgba(181,82,95,0.85)" }}>
+            <span
+              className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase text-white"
+              style={{ background: "rgba(181,82,95,0.9)" }}
+            >
               {product.badge}
             </span>
           )}
 
-          {/* Product Image */}
-          <div className="flex-1 flex items-center justify-center">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="max-w-[280px] max-h-[280px] md:max-w-[380px] md:max-h-[380px] w-full h-full object-contain"
-            />
+          {/* Image area with magnifier */}
+          <div className="flex items-center justify-center pb-4">
+            <div
+              ref={imgRef}
+              className="relative cursor-crosshair"
+              style={{ width: 400, height: 300 }}
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => setIsZooming(true)}
+              onMouseLeave={() => setIsZooming(false)}
+            >
+              {/* Product image */}
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-full w-full object-cover"
+              />
+
+              {/* Zoom hint — shown when not zooming */}
+              {!isZooming && (
+                <div
+                  className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-md text-white/80 pointer-events-none"
+                  style={{
+                    background: "rgba(255,255,255,0.12)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    fontSize: 15,
+                  }}
+                >
+                  <ZoomIn className="w-3 h-3" />
+                  Zoom
+                </div>
+              )}
+
+              {/* Magnifier lens — constrained inside image bounds */}
+              {isZooming && (
+                <div
+                  className="absolute pointer-events-none rounded-full overflow-hidden"
+                  style={{
+                    width: MAG_SIZE,
+                    height: MAG_SIZE,
+                    border: "3px solid rgba(255,255,255,0.75)",
+                    backgroundRepeat: "no-repeat",
+                    zIndex: 20,
+                    ...magStyle,
+                  }}
+                />
+              )}
+            </div>
           </div>
 
-          {/* Name & Price */}
-          <div className="relative z-10">
-            <span className="text-[10px] md:text-xs font-medium uppercase tracking-widest"
-              style={{ color: "#b5525f" }}>
-              {product.category}
-            </span>
-            <h2 className="text-lg md:text-2xl leading-snug text-white mt-1 mb-2"
-              style={{ fontFamily: "'DM Serif Display', serif" }}>
+          {/* Name, category & price */}
+          <div className="relative z-10 px-6 pb-7">
+            <h2
+              className="text-2xl leading-snug text-white mb-2.5"
+              style={{ fontFamily: "'DM Serif Display', serif" }}
+            >
               {product.name}
+              <span
+                className="px-2 py-1 mx-4 text-[15px] font-semibold tracking-widest uppercase bg-[#b5525f]/20 rounded-full"
+                style={{ color: "#b5525f" }}
+              >
+                {product.category}
+              </span>
             </h2>
-            <p className="text-xl md:text-2xl font-light tracking-tight"
-              style={{ color: "#ffaabb" }}>
+            <p
+              className="text-2xl font-light tracking-tight"
+              style={{ color: "#ffaabb" }}
+            >
               {product.price}
             </p>
           </div>
         </div>
 
         {/* ── Right Panel ── */}
-        <div className="flex flex-col p-4 md:p-7 bg-white overflow-y-auto relative flex-1">
+        <div className="flex flex-col p-6 bg-white overflow-y-auto relative">
 
           {/* Close */}
           <button
             onClick={onClose}
-            className="absolute top-2 right-2 md:top-4 md:right-4 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 transition z-10 shadow-sm"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 transition z-10 shadow-sm"
           >
             <X className="h-4 w-4" />
           </button>
 
           {/* Description */}
-          <p className="text-sm font-medium tracking-widest uppercase text-gray-400 mb-1.5">Description</p>
-          <p className="text-md leading-relaxed text-gray-500 mb-2">
+          <p className="text-[10px] font-semibold tracking-widest uppercase text-gray-400 mb-2">
+            Description
+          </p>
+          <p className="text-md leading-relaxed text-gray-500 mb-5">
             {product.description}
           </p>
 
           <div className="h-px bg-gray-100 mb-5" />
 
           {/* Features */}
-          <p className="text-sm font-medium tracking-widest uppercase text-gray-400 mb-3">Features</p>
-          <div className="grid grid-cols-1 gap-2 mb-5">
-            {[
-              "100% Organic Cotton",
-              "Ultra-thin",
-              "Hypoallergenic",
-              "FDA-Approved",
-            ].map((f) => (
-              <div
-                key={f}
-                className="flex items-center gap-2 px-3 text-sm text-gray-700"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#b5525f] shrink-0" />
-                {f}
+          <p className="text-[10px] font-semibold tracking-widest uppercase text-gray-400 mb-3">
+            Features
+          </p>
+            {product.features && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {product.features.map((feature, index) => (
+                  <span
+                    key={index}
+                    className="px-2.5 py-1 rounded-md bg-[#b5525f]/20 text-gray-700 text-md font-medium"
+                  >
+                    {feature.label}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
+            )}
 
-          {/* CTA Button */}
-          <p className="text-sm font-medium tracking-widest uppercase text-gray-400 mb-3">Shop At</p>
-          <div className="flex gap-3">
+          <div className="h-px bg-gray-100 mb-5" />
+
+          {/* CTA */}
+          <p className="text-[10px] font-semibold tracking-widest uppercase text-gray-400 mb-3">
+            Shop at
+          </p>
+          <div className="flex gap-3 mt-auto">
             <a
               href="https://shopee.ph/whole.love.ph"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#c87a5e] text-white py-3 rounded-lg font-medium hover:bg-[#b5525f] transition-colors text-center"
+              className="flex-1 text-white py-3 rounded-xl font-medium text-center text-sm transition-colors"
+              style={{ background: "#c87a5e" }}
+              onMouseOver={(e) => (e.currentTarget.style.background = "#b5525f")}
+              onMouseOut={(e) => (e.currentTarget.style.background = "#c87a5e")}
             >
               Shopee
             </a>
@@ -122,7 +208,10 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
               href="https://www.tiktok.com/@wl.officialph?is_from_webapp=1&sender_device=pc"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#c87a5e] text-white py-3 rounded-lg font-medium hover:bg-[#b5525f] transition-colors text-center"
+              className="flex-1 text-white py-3 rounded-xl font-medium text-center text-sm transition-colors"
+              style={{ background: "#c87a5e" }}
+              onMouseOver={(e) => (e.currentTarget.style.background = "#b5525f")}
+              onMouseOut={(e) => (e.currentTarget.style.background = "#c87a5e")}
             >
               TikTok
             </a>

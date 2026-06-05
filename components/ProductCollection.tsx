@@ -4,7 +4,7 @@ import { products } from "@/lib/data";
 import ProductCard from "./ProductCard";
 
 export default function ProductCollection() {
-  const topPicks = products.filter((p) => p.topPick);
+  const bestSellers = products.filter( (p) => p.badge === "Best Seller" );
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -18,8 +18,8 @@ export default function ProductCollection() {
           </h2>
         </div>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {topPicks.map((product) => (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {bestSellers.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
